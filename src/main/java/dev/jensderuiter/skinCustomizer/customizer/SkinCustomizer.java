@@ -28,18 +28,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.mineskin.GenerateOptions;
 import org.mineskin.data.Visibility;
+import org.mineskin.exception.MineSkinRequestException;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
 
 public class SkinCustomizer {
 
@@ -49,7 +46,7 @@ public class SkinCustomizer {
 
     @Getter
     @Setter
-    private HashMap<String, HashMap> options;
+    private HashMap<String, Map> options;
 
     private final SkinPreview preview;
     private final Location previewLocation;
@@ -69,6 +66,12 @@ public class SkinCustomizer {
         CustomizerPlugin.getCustomizers().add(this);
         this.preview = new SkinPreview(this);
         this.options = new HashMap<>();
+        this.options.put("4", new HashMap<>(Map.of("value", 18))); // hair
+        this.options.put("1", new HashMap<>(Map.of("value", 1))); // eyes
+        this.options.put("8", new HashMap<>(Map.of("value", 42))); // shirt
+        this.options.put("9", new HashMap<>(Map.of("value", 40))); // pants
+        this.options.put("10", new HashMap<>(Map.of("value", 39))); // shoes
+
         this.uiItems = new ArrayList<>();
         this.processing = false;
 
@@ -99,15 +102,15 @@ public class SkinCustomizer {
                 new ColoredScrollingButtons<>(
                         previewLocation,
                         1.9,
-                        List.of(18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 76, 77, 78, 79, 80, 81),
+                        List.of(18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 76, 79, 80, 81),
                         (newId) -> ifNotProcessing(() -> {
-                            HashMap<String, Object> subOptions = this.options.getOrDefault("4", new HashMap<>());
+                            Map<String, Object> subOptions = this.options.getOrDefault("4", new HashMap<>());
                             subOptions.put("value", newId);
                             this.options.put("4", subOptions);
                             this.updateSkinData();
                         }),
                         (color) -> ifNotProcessing(() -> {
-                            HashMap<String, Object> subOptions = this.options.getOrDefault("4", new HashMap<>());
+                            Map<String, Object> subOptions = this.options.getOrDefault("4", new HashMap<>());
                             subOptions.put("color", color);
                             this.options.put("4", subOptions);
                             this.updateSkinData();
@@ -116,20 +119,20 @@ public class SkinCustomizer {
                 )
         );
 
-        // hair
+        // eyes
         this.uiItems.add(
             new ColoredScrollingButtons<>(
                     previewLocation,
                     1.5,
                     List.of(1, 2, 3, 4, 49, 50, 51, 52, 66, 67, 68, 69, 70, 71, 72, 73),
                     (newId) -> ifNotProcessing(() -> {
-                        HashMap<String, Object> subOptions = this.options.getOrDefault("1", new HashMap<>());
+                        Map<String, Object> subOptions = this.options.getOrDefault("1", new HashMap<>());
                         subOptions.put("value", newId);
                         this.options.put("1", subOptions);
                         this.updateSkinData();
                     }),
                     (color) -> ifNotProcessing(() -> {
-                        HashMap<String, Object> subOptions = this.options.getOrDefault("1", new HashMap<>());
+                        Map<String, Object> subOptions = this.options.getOrDefault("1", new HashMap<>());
                         subOptions.put("color", color);
                         this.options.put("1", subOptions);
                         this.updateSkinData();
@@ -145,13 +148,13 @@ public class SkinCustomizer {
                     1.1,
                     List.of(42, 43, 61),
                     (newId) -> ifNotProcessing(() -> {
-                        HashMap<String, Object> subOptions = this.options.getOrDefault("8", new HashMap<>());
+                        Map<String, Object> subOptions = this.options.getOrDefault("8", new HashMap<>());
                         subOptions.put("value", newId);
                         this.options.put("8", subOptions);
                         this.updateSkinData();
                     }),
                     (color) -> ifNotProcessing(() -> {
-                        HashMap<String, Object> subOptions = this.options.getOrDefault("8", new HashMap<>());
+                        Map<String, Object> subOptions = this.options.getOrDefault("8", new HashMap<>());
                         subOptions.put("color", color);
                         this.options.put("8", subOptions);
                         this.updateSkinData();
@@ -167,13 +170,13 @@ public class SkinCustomizer {
                     0.7,
                     List.of(40, 64),
                     (newId) -> ifNotProcessing(() -> {
-                        HashMap<String, Object> subOptions = this.options.getOrDefault("9", new HashMap<>());
+                        Map<String, Object> subOptions = this.options.getOrDefault("9", new HashMap<>());
                         subOptions.put("value", newId);
                         this.options.put("9", subOptions);
                         this.updateSkinData();
                     }),
                     (color) -> ifNotProcessing(() -> {
-                        HashMap<String, Object> subOptions = this.options.getOrDefault("9", new HashMap<>());
+                        Map<String, Object> subOptions = this.options.getOrDefault("9", new HashMap<>());
                         subOptions.put("color", color);
                         this.options.put("9", subOptions);
                         this.updateSkinData();
@@ -189,13 +192,13 @@ public class SkinCustomizer {
                     0.3,
                     List.of(39, 95),
                     (newId) -> ifNotProcessing(() -> {
-                        HashMap<String, Object> subOptions = this.options.getOrDefault("10", new HashMap<>());
+                        Map<String, Object> subOptions = this.options.getOrDefault("10", new HashMap<>());
                         subOptions.put("value", newId);
                         this.options.put("10", subOptions);
                         this.updateSkinData();
                     }),
                     (color) -> ifNotProcessing(() -> {
-                        HashMap<String, Object> subOptions = this.options.getOrDefault("10", new HashMap<>());
+                        Map<String, Object> subOptions = this.options.getOrDefault("10", new HashMap<>());
                         subOptions.put("color", color);
                         this.options.put("10", subOptions);
                         this.updateSkinData();
@@ -317,7 +320,7 @@ public class SkinCustomizer {
                 InputStream skinRes = rawResponse.getEntity().getContent();
 
                 GenerateOptions options = GenerateOptions.create()
-                        .name(skinHash)
+                        .name(skinHash.substring(0, 24))
                         .visibility(Visibility.UNLISTED);
                 CustomizerPlugin.getMineskin().generateUpload(skinRes, options)
                         .thenAccept(response -> {
@@ -332,6 +335,9 @@ public class SkinCustomizer {
                             future.complete(data);
                         })
                         .exceptionally(throwable -> {
+                            if (throwable.getCause() instanceof MineSkinRequestException req) {
+                                System.out.println(req.getResponse());
+                            }
                             future.completeExceptionally(throwable);
                             return null;
                         });
