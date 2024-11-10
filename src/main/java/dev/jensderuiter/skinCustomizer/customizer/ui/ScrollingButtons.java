@@ -61,7 +61,7 @@ public class ScrollingButtons<T> implements Destroyable {
     private void previous(Player player) {
         this.index--;
         if (this.index < 0) {
-            this.index = 0;
+            this.index = this.values.size() - 1;
         }
         this.applyCallback();
     }
