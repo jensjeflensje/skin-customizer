@@ -15,7 +15,6 @@ public class InteractionClickListener implements Listener {
     public void onPlayerInteract(PlayerInteractEntityEvent event) {
         if(!(event.getRightClicked() instanceof Interaction)) return;
         UUID uuid = event.getRightClicked().getUniqueId();
-        Bukkit.getLogger().info(uuid.toString());
         InteractableButton button = InteractableButton.getInstances().get(uuid);
         if (button != null) button.click(event.getPlayer());
     }

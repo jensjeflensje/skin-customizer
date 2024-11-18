@@ -18,7 +18,6 @@ public class CitizensListener implements Listener {
         CustomizerPlugin.setCitizensEnabled(true);
         List<NPC> toRemove = new ArrayList<>();
         CitizensAPI.getNPCRegistry().forEach(npc -> {
-            Bukkit.getLogger().info(npc.getName());
             if (npc.getName().equals("skin_customizer")) {
                 toRemove.add(npc);
             }

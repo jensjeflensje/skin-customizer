@@ -309,8 +309,6 @@ public class SkinCustomizer {
         CompletableFuture<TextureData> future = new CompletableFuture<>();
 
         String skinHash = createSkinHash();
-        Bukkit.getLogger().info(this.gson.toJson(options));
-        Bukkit.getLogger().info(skinHash);
 
         if (textureCache.containsKey(skinHash)) {
             TextureData textureData = textureCache.get(skinHash);
@@ -334,7 +332,6 @@ public class SkinCustomizer {
                         .visibility(Visibility.UNLISTED);
                 CustomizerPlugin.getMineskin().generateUpload(skinRes, options)
                         .thenAccept(response -> {
-                            Bukkit.getLogger().info("got response " + response.getMessageOrError());
                             TextureData data = new TextureData(
                                     response.getSkin().data().texture().value(),
                                     response.getSkin().data().texture().signature(),

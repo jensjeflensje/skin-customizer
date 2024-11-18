@@ -23,7 +23,6 @@ public class SkinPreview {
 
     public void summon(Location location) {
         this.location = location;
-        Bukkit.getLogger().info("Spawn npc");
         npc.spawn(this.location);
     }
 
