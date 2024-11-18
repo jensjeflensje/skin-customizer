@@ -17,7 +17,7 @@ public class SkinPreview {
 
     public SkinPreview(SkinCustomizer skinCustomizer) {
         this.skinCustomizer = skinCustomizer;
-        npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "fdafafa3teageawfg");
+        npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "skin_customizer");
         npc.data().setPersistent(NPC.Metadata.NAMEPLATE_VISIBLE, false);
     }
 

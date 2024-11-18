@@ -4,15 +4,14 @@ import dev.jensderuiter.skinCustomizer.command.StartCustomizerCommand;
 import dev.jensderuiter.skinCustomizer.customizer.SkinCustomizer;
 import dev.jensderuiter.skinCustomizer.customizer.TextureData;
 import dev.jensderuiter.skinCustomizer.customizer.ui.base.InteractableButton;
+import dev.jensderuiter.skinCustomizer.listener.CitizensListener;
 import dev.jensderuiter.skinCustomizer.listener.InteractionClickListener;
 import lombok.Getter;
-import net.citizensnpcs.api.CitizensAPI;
+import lombok.Setter;
 import net.skinsrestorer.api.SkinsRestorer;
 import net.skinsrestorer.api.SkinsRestorerProvider;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Entity;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.ipvp.canvas.MenuFunctionListener;
 import org.mineskin.ApacheRequestHandler;
@@ -37,14 +36,17 @@ public final class CustomizerPlugin extends JavaPlugin {
     @Getter
     private static List<SkinCustomizer> customizers;
 
+    @Getter
+    @Setter
+    private static boolean citizensEnabled;
+
     @Override
     public void onEnable() {
         instance = this;
         customizers = new ArrayList<>();
 
-        Bukkit.getWorld("world").getEntities().forEach(Entity::remove);
-
         getServer().getPluginManager().registerEvents(new InteractionClickListener(), this);
+        getServer().getPluginManager().registerEvents(new CitizensListener(), this);
         getServer().getPluginManager().registerEvents(new MenuFunctionListener(), this);
 
         getCommand("customizer").setExecutor(new StartCustomizerCommand());
@@ -68,8 +70,6 @@ public final class CustomizerPlugin extends JavaPlugin {
             );
             textureCache.put(key, textureData);
         }
-
-        Bukkit.getScheduler().runTaskLater(this, CitizensAPI.getNPCRegistry()::deregisterAll, 2);
     }
 
     @Override

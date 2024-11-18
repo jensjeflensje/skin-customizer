@@ -48,7 +48,8 @@ public class SkinCustomizer {
     @Setter
     private HashMap<String, Map> options;
 
-    private final SkinPreview preview;
+    @Getter
+    private SkinPreview preview;
     private final Location previewLocation;
 
     private TextureData skinData;
@@ -64,7 +65,7 @@ public class SkinCustomizer {
 
     public SkinCustomizer(Location location) {
         CustomizerPlugin.getCustomizers().add(this);
-        this.preview = new SkinPreview(this);
+        this.spawnPreview();
         this.options = new HashMap<>();
         this.options.put("4", new HashMap<>(Map.of("value", 18))); // hair
         this.options.put("1", new HashMap<>(Map.of("value", 1))); // eyes
@@ -206,6 +207,15 @@ public class SkinCustomizer {
                     ColoredScrollingButtons.SHOE_OPTIONS
             )
         );
+    }
+
+    public void spawnPreview() {
+        // if we return here, this method will be called again once Citizens initializes
+        if (!CustomizerPlugin.isCitizensEnabled()) {
+            this.preview = null;
+            return;
+        };
+        this.preview = new SkinPreview(this);
     }
 
     private void ifNotProcessing(Runnable runnable) {
