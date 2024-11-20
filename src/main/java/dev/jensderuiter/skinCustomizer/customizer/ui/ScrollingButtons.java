@@ -1,5 +1,6 @@
 package dev.jensderuiter.skinCustomizer.customizer.ui;
 
+import dev.jensderuiter.skinCustomizer.CustomizerPlugin;
 import dev.jensderuiter.skinCustomizer.Util;
 import dev.jensderuiter.skinCustomizer.customizer.Destroyable;
 import dev.jensderuiter.skinCustomizer.customizer.ui.base.InteractableButton;
@@ -33,14 +34,14 @@ public class ScrollingButtons<T> implements Destroyable {
         this.buttons.add(
                 new InteractableButton(
                         getOffsetLocation(0.8),
-                        Util.getSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODFhNGI1ZTg4MDVhYmZhY2VjMzIwNjU0ODllZjExZmNjZWUzZjUxYmVmZGRkMzE3MTQ3NzNmNzE0ZTdiMjczIn19fQ=="),
+                        Util.getSkull(CustomizerPlugin.getTextureConfig().getString("next")),
                         this::next
                 )
         );
         this.buttons.add(
                 new InteractableButton(
                         getOffsetLocation(-0.8),
-                        Util.getSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzZhOGQyOTIxOWUyYzljODQ5NTQ2OTNiODdmMzdhZWNlM2MyNzFkNTdmYjZhMmQ3MWZhZmUzOWYwYjgwNDAifX19"),
+                        Util.getSkull(CustomizerPlugin.getTextureConfig().getString("previous")),
                         this::previous
                 )
         );

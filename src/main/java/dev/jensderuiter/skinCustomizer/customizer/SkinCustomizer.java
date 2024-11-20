@@ -5,7 +5,6 @@ import dev.jensderuiter.skinCustomizer.CustomizerPlugin;
 import dev.jensderuiter.skinCustomizer.Util;
 import dev.jensderuiter.skinCustomizer.customizer.preview.SkinPreview;
 import dev.jensderuiter.skinCustomizer.customizer.ui.ColoredScrollingButtons;
-import dev.jensderuiter.skinCustomizer.customizer.ui.ScrollingButtons;
 import dev.jensderuiter.skinCustomizer.customizer.ui.base.InteractableButton;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +20,6 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -60,8 +58,8 @@ public class SkinCustomizer {
 
     private InteractableButton applyButton;
 
-    private ItemStack checkHead = Util.getSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDk5ODBjMWQyMTE4MDlhOWI2NTY1MDg4ZjU2YTM4ZjJlZjQ5MTE1YzEwNTRmYTY2MjQ1MTIyZTllZWVkZWNjMiJ9fX0=");
-    private ItemStack refreshHead = Util.getSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTg4N2NjMzg4YzhkY2ZjZjFiYThhYTVjM2MxMDJkY2U5Y2Y3YjFiNjNlNzg2YjM0ZDRmMWMzNzk2ZDNlOWQ2MSJ9fX0=");
+    private ItemStack checkHead = Util.getSkull(CustomizerPlugin.getTextureConfig().getString("check"));
+    private ItemStack loadingHead = Util.getSkull(CustomizerPlugin.getTextureConfig().getString("loading"));
 
     public SkinCustomizer(Location location) {
         CustomizerPlugin.getCustomizers().add(this);
@@ -93,7 +91,7 @@ public class SkinCustomizer {
 
         applyButton = new InteractableButton(
                 applyButtonLocation,
-                Util.getSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDk5ODBjMWQyMTE4MDlhOWI2NTY1MDg4ZjU2YTM4ZjJlZjQ5MTE1YzEwNTRmYTY2MjQ1MTIyZTllZWVkZWNjMiJ9fX0="),
+                checkHead,
                 this::applyToPlayer
         );
         this.uiItems.add(applyButton);
@@ -287,7 +285,7 @@ public class SkinCustomizer {
 
     private void setProcessing(boolean newState) {
         this.processing = newState;
-        applyButton.setItemStack(this.processing ? this.refreshHead : this.checkHead);
+        applyButton.setItemStack(this.processing ? this.loadingHead : this.checkHead);
     }
 
     private void getSkinAndAction(BukkitRunnable runnable) {

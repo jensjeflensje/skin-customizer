@@ -1,6 +1,7 @@
 package dev.jensderuiter.skinCustomizer.customizer.ui;
 
 
+import dev.jensderuiter.skinCustomizer.CustomizerPlugin;
 import dev.jensderuiter.skinCustomizer.Util;
 import dev.jensderuiter.skinCustomizer.customizer.ui.base.InteractableButton;
 import lombok.AllArgsConstructor;
@@ -82,7 +83,7 @@ public class ColoredScrollingButtons<T> extends ScrollingButtons<T> {
         this.buttons.add(
             new InteractableButton(
                     getOffsetLocation(1.1),
-                    Util.getSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTkxNGQyZDYzNDE4MGU3MTJhZDliYzI1MmI0MjU1YWM3MGJiOWI4ZDQ0OTY2Y2ZhZmY5NzNmZWExYWRjYzlmMCJ9fX0="),
+                    Util.getSkull(CustomizerPlugin.getTextureConfig().getString("color")),
                     this::openColorMenu
             )
         );

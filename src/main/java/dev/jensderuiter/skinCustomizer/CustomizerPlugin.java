@@ -40,6 +40,9 @@ public final class CustomizerPlugin extends JavaPlugin {
     @Setter
     private static boolean citizensEnabled;
 
+    @Getter
+    private static ConfigurationSection textureConfig;
+
     @Override
     public void onEnable() {
         instance = this;
@@ -70,6 +73,8 @@ public final class CustomizerPlugin extends JavaPlugin {
             );
             textureCache.put(key, textureData);
         }
+
+        textureConfig = this.getConfig().getConfigurationSection("textures");
     }
 
     @Override

@@ -1,2 +1,8 @@
 mineskin_key:
 cache: {}
+textures:
+  check: "http://textures.minecraft.net/texture/d9980c1d211809a9b6565088f56a38f2ef49115c1054fa66245122e9eeedecc2"
+  loading: "http://textures.minecraft.net/texture/e887cc388c8dcfcf1ba8aa5c3c102dce9cf7b1b63e786b34d4f1c3796d3e9d61"
+  color: "http://textures.minecraft.net/texture/e914d2d634180e712ad9bc252b4255ac70bb9b8d44966cfaff973fea1adcc9f0"
+  next: "http://textures.minecraft.net/texture/81a4b5e8805abfacec32065489ef11fccee3f51befddd31714773f714e7b273"
+  previous: "http://textures.minecraft.net/texture/76a8d29219e2c9c84954693b87f37aece3c271d57fb6a2d71fafe39f0b8040"
