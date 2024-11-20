@@ -26,3 +26,8 @@ Every other element (
 [color button](src/main/java/dev/jensderuiter/skinCustomizer/customizer/ui/ColoredScrollingButtons.java)
 )
 is based on one or multiple instances of this base button, [`InteractableButton`](src/main/java/dev/jensderuiter/skinCustomizer/customizer/ui/base/InteractableButton.java).
+
+## Caveats
+This system of constantly uploading new skins to Mojang can be quite slow.
+The plugin tries to relieve this by caching the skin using the combination of components as a cache key,
+but this doesn't apply to newly made combinations.
