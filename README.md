@@ -2,6 +2,9 @@
 A Spigot plugin/toolkit to create interactable, realtime skin customization interfaces inside Minecraft itself.
 It features a variety of different components (hair styles, eyes, shirts...) and colors to work with.
 
+## Demo
+[![Demo video](https://img.youtube.com/vi/3xdoilfft1E/0.jpg)](https://www.youtube.com/watch?v=3xdoilfft1E)
+
 ## Dependencies
 This project depends on [Citizens](https://www.spigotmc.org/resources/citizens.13811/) to create the skin preview, and [SkinsRestorer](https://skinsrestorer.net/) to actually apply the skin to the player.
 Under the hood, the project uses [MineSkin](https://mineskin.org/) to upload the generated skin textures to Mojang and [jens.skin](https://jens.skin) (my project) to render a collection of chosen options to an actual skin.
