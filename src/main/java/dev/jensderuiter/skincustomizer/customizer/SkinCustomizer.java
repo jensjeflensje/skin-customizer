@@ -238,7 +238,6 @@ public class SkinCustomizer {
 
         String skinHash = createSkinHash();
 
-        Bukkit.getLogger().info(this.gson.toJson(options));
         if (textureCache.containsKey(skinHash)) {
             TextureData textureData = textureCache.get(skinHash);
             skinData = textureData;
