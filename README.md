@@ -27,6 +27,7 @@ Start using this project as a dependency by including it in your pom.xml like th
     <groupId>com.github.jensjeflensje</groupId>
     <artifactId>skincustomizer</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <scope>provided</scope>
 </dependency>
 ```
 
@@ -61,3 +62,8 @@ object, which can also be replaced by a custom one and given to `SkinCustomizer`
 This system of constantly uploading new skins to Mojang can be quite slow.
 The plugin tries to relieve this by caching the skin using the combination of components as a cache key,
 but this doesn't apply to newly made combinations.
+
+## Motivation
+I created [jens.skin](https://jens.skin) a while ago and I thought it would be fun
+to make a version that's inside Minecraft itself.
+Even though it's not perfect, I'm still quite proud of it :).
