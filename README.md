@@ -25,8 +25,8 @@ Start using this project as a dependency by including it in your pom.xml like th
 <!-- Dependency -->
 <dependency>
     <groupId>com.github.jensjeflensje</groupId>
-    <artifactId>skincustomizer</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>skin-customizer</artifactId>
+    <version>1.0.0</version>
     <scope>provided</scope>
 </dependency>
 ```
