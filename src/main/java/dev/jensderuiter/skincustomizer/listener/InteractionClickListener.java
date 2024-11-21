@@ -1,7 +1,6 @@
-package dev.jensderuiter.skinCustomizer.listener;
+package dev.jensderuiter.skincustomizer.listener;
 
-import dev.jensderuiter.skinCustomizer.customizer.ui.base.InteractableButton;
-import org.bukkit.Bukkit;
+import dev.jensderuiter.skincustomizer.customizer.ui.base.InteractableButton;
 import org.bukkit.entity.Interaction;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

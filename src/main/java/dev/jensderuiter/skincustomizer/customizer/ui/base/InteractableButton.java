@@ -1,8 +1,7 @@
-package dev.jensderuiter.skinCustomizer.customizer.ui.base;
+package dev.jensderuiter.skincustomizer.customizer.ui.base;
 
-import dev.jensderuiter.skinCustomizer.customizer.Destroyable;
+import dev.jensderuiter.skincustomizer.customizer.Destroyable;
 import lombok.Getter;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Interaction;

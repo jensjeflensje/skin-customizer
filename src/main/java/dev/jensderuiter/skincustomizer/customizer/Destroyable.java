@@ -1,4 +1,4 @@
-package dev.jensderuiter.skinCustomizer.customizer;
+package dev.jensderuiter.skincustomizer.customizer;
 
 public interface Destroyable {
 

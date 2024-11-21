@@ -1,6 +1,6 @@
-package dev.jensderuiter.skinCustomizer.command;
+package dev.jensderuiter.skincustomizer.command;
 
-import dev.jensderuiter.skinCustomizer.customizer.SkinCustomizer;
+import dev.jensderuiter.skincustomizer.customizer.SkinCustomizer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

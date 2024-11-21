@@ -1,8 +1,188 @@
 mineskin_key:
-cache: {}
 textures:
   check: "http://textures.minecraft.net/texture/d9980c1d211809a9b6565088f56a38f2ef49115c1054fa66245122e9eeedecc2"
   loading: "http://textures.minecraft.net/texture/e887cc388c8dcfcf1ba8aa5c3c102dce9cf7b1b63e786b34d4f1c3796d3e9d61"
   color: "http://textures.minecraft.net/texture/e914d2d634180e712ad9bc252b4255ac70bb9b8d44966cfaff973fea1adcc9f0"
   next: "http://textures.minecraft.net/texture/81a4b5e8805abfacec32065489ef11fccee3f51befddd31714773f714e7b273"
   previous: "http://textures.minecraft.net/texture/76a8d29219e2c9c84954693b87f37aece3c271d57fb6a2d71fafe39f0b8040"
+categories:
+  hair:
+    id: 4
+    y_offset: 1.9
+    components:
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      - 24
+      - 25
+      - 26
+      - 27
+      - 76
+      - 79
+      - 80
+      - 81
+    colors:
+      RED_WOOL:
+        - "#FF7A43"
+        - "#E25A41"
+        - "#BC3E30"
+        - "#9A2A2A"
+      BLACK_WOOL:
+        - "#2E2E3D"
+        - "#211F29"
+        - "#16141B"
+        - "#0D0C12"
+      YELLOW_WOOL:
+        - "#F5C168"
+        - "#E0A85B"
+        - "#C68848"
+        - "#A46938"
+      BROWN_WOOL:
+        - "#76482A"
+        - "#5E3621"
+        - "#4B2717"
+        - "#361A0F"
+      GRAY_WOOL:
+        - "#4D565F"
+        - "#3B4048"
+        - "#2A2D34"
+        - "#1E2127"
+      LIGHT_GRAY_WOOL:
+        - "#EBE2D9"
+        - "#D3C8BF"
+        - "#B8ACA3"
+        - "#988E85"
+      LIGHT_BLUE_WOOL:
+        - "#D9F0F1"
+        - "#BFDBE2"
+        - "#A4C2D1"
+        - "#8EAAC5"
+  eyes:
+    id: 1
+    y_offset: 1.5
+    components:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 49
+      - 50
+      - 51
+      - 52
+      - 66
+      - 67
+      - 68
+      - 69
+      - 70
+      - 71
+      - 72
+      - 73
+    colors:
+      BROWN_WOOL:
+        - "#7D3900"
+      LIME_WOOL:
+        - "#86BC00"
+      BLUE_WOOL:
+        - "#5C9DCE"
+  shirt:
+    id: 8
+    y_offset: 1.1
+    components:
+      - 42
+      - 43
+      - 61
+    colors:
+      WHITE_WOOL:
+        - "#FFFFFF"
+        - "#DCE2E8"
+        - "#BAC1CB"
+        - "#9396A6"
+      LIGHT_GRAY_WOOL:
+        - "#B1B6B7"
+        - "#9DA3A4"
+        - "#858B8E"
+        - "#676D73"
+      BLUE_WOOL:
+        - "#5E7D9A"
+        - "#526B8C"
+        - "#46567A"
+        - "#3A436C"
+      GREEN_WOOL:
+        - "#56B528"
+        - "#1E9A2B"
+        - "#147136"
+        - "#0C4F32"
+      RED_WOOL:
+        - "#CA4738"
+        - "#B2292D"
+        - "#871A2A"
+        - "#651128"
+  pants:
+    id: 9
+    y_offset: 0.7
+    components:
+      - 40
+      - 64
+    colors:
+      BROWN_WOOL:
+        - "#6C4D39"
+        - "#523728"
+        - "#3C221B"
+        - "#341A15"
+        - "#291611"
+      STRIPPED_SPRUCE_WOOD:
+        - "#A3774F"
+        - "#81583B"
+        - "#633D2C"
+        - "#512F24"
+        - "#45271E"
+      GRAY_WOOL:
+        - "#2D2C36"
+        - "#27262D"
+        - "#1F1F25"
+        - "#1A1B1F"
+        - "#16161D"
+      LIGHT_GRAY_WOOL:
+        - "#887E91"
+        - "#6D6975"
+        - "#524E57"
+        - "#403F46"
+        - "#3B3741"
+      PURPLE_WOOL:
+        - "#5B355A"
+        - "#462948"
+        - "#331E37"
+        - "#2D1A31"
+        - "#26162B"
+  shoes:
+    id: 10
+    y_offset: 0.3
+    components:
+      - 39
+      - 95
+    colors:
+      BROWN_WOOL:
+        - "#5F3D2D"
+        - "#462E26"
+        - "#34231D"
+        - "#2C1C17"
+      BLACK_WOOL:
+        - "#201F26"
+        - "#15151A"
+        - "#0D0D10"
+        - "#08080B"
+      GRAY_WOOL:
+        - "#2F2E35"
+        - "#242429"
+        - "#1C1C1F"
+        - "#17171A"
+      LIGHT_BLUE_WOOL:
+        - "#88A4A8"
+        - "#799195"
+        - "#96B4B9"
+        - "#7EA8A8"
+
+cache: {}

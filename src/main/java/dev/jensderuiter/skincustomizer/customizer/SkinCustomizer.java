@@ -1,11 +1,12 @@
-package dev.jensderuiter.skinCustomizer.customizer;
+package dev.jensderuiter.skincustomizer.customizer;
 
 import com.google.gson.Gson;
-import dev.jensderuiter.skinCustomizer.CustomizerPlugin;
-import dev.jensderuiter.skinCustomizer.Util;
-import dev.jensderuiter.skinCustomizer.customizer.preview.SkinPreview;
-import dev.jensderuiter.skinCustomizer.customizer.ui.ColoredScrollingButtons;
-import dev.jensderuiter.skinCustomizer.customizer.ui.base.InteractableButton;
+import dev.jensderuiter.skincustomizer.CustomizerPlugin;
+import dev.jensderuiter.skincustomizer.Util;
+import dev.jensderuiter.skincustomizer.customizer.option.SkinCustomizerOptions;
+import dev.jensderuiter.skincustomizer.customizer.preview.SkinPreview;
+import dev.jensderuiter.skincustomizer.customizer.ui.ColoredScrollingButtons;
+import dev.jensderuiter.skincustomizer.customizer.ui.base.InteractableButton;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
@@ -20,6 +21,7 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -58,22 +60,33 @@ public class SkinCustomizer {
 
     private InteractableButton applyButton;
 
-    private ItemStack checkHead = Util.getSkull(CustomizerPlugin.getTextureConfig().getString("check"));
-    private ItemStack loadingHead = Util.getSkull(CustomizerPlugin.getTextureConfig().getString("loading"));
+    private final ItemStack checkHead = Util.getSkull(CustomizerPlugin.getTextureConfig().getString("check"));
+    private final ItemStack loadingHead = Util.getSkull(CustomizerPlugin.getTextureConfig().getString("loading"));
+
+    private final SkinCustomizerOptions config;
+
 
     public SkinCustomizer(Location location) {
+        this(location, CustomizerPlugin.getSkinCustomizerOptions());
+    }
+
+    public SkinCustomizer(Location location, SkinCustomizerOptions config) {
         CustomizerPlugin.getCustomizers().add(this);
         this.spawnPreview();
+        this.config = config;
         this.options = new HashMap<>();
-        this.options.put("4", new HashMap<>(Map.of("value", 18))); // hair
-        this.options.put("1", new HashMap<>(Map.of("value", 1))); // eyes
-        this.options.put("8", new HashMap<>(Map.of("value", 42))); // shirt
-        this.options.put("9", new HashMap<>(Map.of("value", 40))); // pants
-        this.options.put("10", new HashMap<>(Map.of("value", 39))); // shoes
+
+        config.getCategories().forEach(category -> {
+            this.options.put(
+                    String.valueOf(category.getCategoryId()),
+                    new HashMap<>(Map.of("value", category.getComponents().get(0)))
+            );
+        });
 
         this.uiItems = new ArrayList<>();
         this.processing = false;
 
+        // summon the preview in opposite direction
         previewLocation = location.clone();
         previewLocation.setPitch(0);
         previewLocation.add(
@@ -82,129 +95,6 @@ public class SkinCustomizer {
                 previewLocation.getDirection().getZ()
         );
         previewLocation.setYaw(location.getYaw() - 180);
-
-
-        // apply button
-        Location applyButtonLocation = previewLocation.clone();
-        applyButtonLocation.setYaw(applyButtonLocation.getYaw() - 180);
-        applyButtonLocation.add(0, 2.4, 0);
-
-        applyButton = new InteractableButton(
-                applyButtonLocation,
-                checkHead,
-                this::applyToPlayer
-        );
-        this.uiItems.add(applyButton);
-
-        // hair
-        this.uiItems.add(
-                new ColoredScrollingButtons<>(
-                        previewLocation,
-                        1.9,
-                        List.of(18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 76, 79, 80, 81),
-                        (newId) -> ifNotProcessing(() -> {
-                            Map<String, Object> subOptions = this.options.getOrDefault("4", new HashMap<>());
-                            subOptions.put("value", newId);
-                            this.options.put("4", subOptions);
-                            this.updateSkinData();
-                        }),
-                        (color) -> ifNotProcessing(() -> {
-                            Map<String, Object> subOptions = this.options.getOrDefault("4", new HashMap<>());
-                            subOptions.put("color", color);
-                            this.options.put("4", subOptions);
-                            this.updateSkinData();
-                        }),
-                        ColoredScrollingButtons.HAIR_OPTIONS
-                )
-        );
-
-        // eyes
-        this.uiItems.add(
-            new ColoredScrollingButtons<>(
-                    previewLocation,
-                    1.5,
-                    List.of(1, 2, 3, 4, 49, 50, 51, 52, 66, 67, 68, 69, 70, 71, 72, 73),
-                    (newId) -> ifNotProcessing(() -> {
-                        Map<String, Object> subOptions = this.options.getOrDefault("1", new HashMap<>());
-                        subOptions.put("value", newId);
-                        this.options.put("1", subOptions);
-                        this.updateSkinData();
-                    }),
-                    (color) -> ifNotProcessing(() -> {
-                        Map<String, Object> subOptions = this.options.getOrDefault("1", new HashMap<>());
-                        subOptions.put("color", color);
-                        this.options.put("1", subOptions);
-                        this.updateSkinData();
-                    }),
-                    ColoredScrollingButtons.EYE_OPTIONS
-            )
-        );
-
-        // shirt
-        this.uiItems.add(
-            new ColoredScrollingButtons<>(
-                    previewLocation,
-                    1.1,
-                    List.of(42, 43, 61),
-                    (newId) -> ifNotProcessing(() -> {
-                        Map<String, Object> subOptions = this.options.getOrDefault("8", new HashMap<>());
-                        subOptions.put("value", newId);
-                        this.options.put("8", subOptions);
-                        this.updateSkinData();
-                    }),
-                    (color) -> ifNotProcessing(() -> {
-                        Map<String, Object> subOptions = this.options.getOrDefault("8", new HashMap<>());
-                        subOptions.put("color", color);
-                        this.options.put("8", subOptions);
-                        this.updateSkinData();
-                    }),
-                    ColoredScrollingButtons.SHIRT_OPTIONS
-            )
-        );
-
-        // pants
-        this.uiItems.add(
-            new ColoredScrollingButtons<>(
-                    previewLocation,
-                    0.7,
-                    List.of(40, 64),
-                    (newId) -> ifNotProcessing(() -> {
-                        Map<String, Object> subOptions = this.options.getOrDefault("9", new HashMap<>());
-                        subOptions.put("value", newId);
-                        this.options.put("9", subOptions);
-                        this.updateSkinData();
-                    }),
-                    (color) -> ifNotProcessing(() -> {
-                        Map<String, Object> subOptions = this.options.getOrDefault("9", new HashMap<>());
-                        subOptions.put("color", color);
-                        this.options.put("9", subOptions);
-                        this.updateSkinData();
-                    }),
-                    ColoredScrollingButtons.PANT_OPTIONS
-            )
-        );
-
-        // shoes
-        this.uiItems.add(
-            new ColoredScrollingButtons<>(
-                    previewLocation,
-                    0.3,
-                    List.of(39, 95),
-                    (newId) -> ifNotProcessing(() -> {
-                        Map<String, Object> subOptions = this.options.getOrDefault("10", new HashMap<>());
-                        subOptions.put("value", newId);
-                        this.options.put("10", subOptions);
-                        this.updateSkinData();
-                    }),
-                    (color) -> ifNotProcessing(() -> {
-                        Map<String, Object> subOptions = this.options.getOrDefault("10", new HashMap<>());
-                        subOptions.put("color", color);
-                        this.options.put("10", subOptions);
-                        this.updateSkinData();
-                    }),
-                    ColoredScrollingButtons.SHOE_OPTIONS
-            )
-        );
     }
 
     public void spawnPreview() {
@@ -254,11 +144,51 @@ public class SkinCustomizer {
         return bigInt.toString(16);
     }
 
+    private void summonUI() {
+        // apply button
+        Location applyButtonLocation = previewLocation.clone();
+        applyButtonLocation.setYaw(applyButtonLocation.getYaw() - 180);
+        applyButtonLocation.add(0, 2.4, 0);
+
+        applyButton = new InteractableButton(
+                applyButtonLocation,
+                checkHead,
+                this::applyToPlayer
+        );
+        this.uiItems.add(applyButton);
+
+        config.getCategories().forEach(category -> {
+            String categoryId = String.valueOf(category.getCategoryId());
+            this.uiItems.add(
+                    new ColoredScrollingButtons<>(
+                            previewLocation,
+                            category.getYOffset(),
+                            category.getComponents(),
+                            (newId) -> ifNotProcessing(() -> {
+                                Map subOptions = this.options.getOrDefault(categoryId, new HashMap<>());
+                                subOptions.put("value", newId);
+                                this.options.put(categoryId, subOptions);
+                                this.updateSkinData();
+                            }),
+                            (color) -> ifNotProcessing(() -> {
+                                Map<String, Object> subOptions = this.options.getOrDefault(categoryId, new HashMap<>());
+                                subOptions.put("color", color);
+                                this.options.put(categoryId, subOptions);
+                                this.updateSkinData();
+                            }),
+                            category.getColorOptions()
+                    )
+            );
+        });
+    }
+
     public void summon() {
         this.getSkinAndAction(
                 new BukkitRunnable() {
                     @Override
                     public void run() {
+                        summonUI();
+
                         preview.setSkinData(skinData);
                         preview.summon(previewLocation);
                     }
@@ -308,6 +238,7 @@ public class SkinCustomizer {
 
         String skinHash = createSkinHash();
 
+        Bukkit.getLogger().info(this.gson.toJson(options));
         if (textureCache.containsKey(skinHash)) {
             TextureData textureData = textureCache.get(skinHash);
             skinData = textureData;

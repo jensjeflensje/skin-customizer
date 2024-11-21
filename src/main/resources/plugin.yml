@@ -1,6 +1,6 @@
 name: SkinCustomizer
 version: '1.0-SNAPSHOT'
-main: dev.jensderuiter.skinCustomizer.CustomizerPlugin
+main: dev.jensderuiter.skincustomizer.CustomizerPlugin
 api-version: '1.20'
 authors: [ jensjeflensje ]
 website: https://jensderuiter.dev

@@ -1,10 +1,9 @@
-package dev.jensderuiter.skinCustomizer.listener;
+package dev.jensderuiter.skincustomizer.listener;
 
-import dev.jensderuiter.skinCustomizer.CustomizerPlugin;
+import dev.jensderuiter.skincustomizer.CustomizerPlugin;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.event.CitizensEnableEvent;
 import net.citizensnpcs.api.npc.NPC;
-import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 

@@ -1,4 +1,4 @@
-package dev.jensderuiter.skinCustomizer;
+package dev.jensderuiter.skincustomizer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

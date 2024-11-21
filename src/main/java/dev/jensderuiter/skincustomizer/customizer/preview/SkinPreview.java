@@ -1,11 +1,10 @@
-package dev.jensderuiter.skinCustomizer.customizer.preview;
+package dev.jensderuiter.skincustomizer.customizer.preview;
 
-import dev.jensderuiter.skinCustomizer.customizer.SkinCustomizer;
-import dev.jensderuiter.skinCustomizer.customizer.TextureData;
+import dev.jensderuiter.skincustomizer.customizer.SkinCustomizer;
+import dev.jensderuiter.skincustomizer.customizer.TextureData;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.trait.SkinTrait;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 

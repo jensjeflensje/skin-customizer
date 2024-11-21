@@ -1,9 +1,9 @@
-package dev.jensderuiter.skinCustomizer.customizer.ui;
+package dev.jensderuiter.skincustomizer.customizer.ui;
 
-import dev.jensderuiter.skinCustomizer.CustomizerPlugin;
-import dev.jensderuiter.skinCustomizer.Util;
-import dev.jensderuiter.skinCustomizer.customizer.Destroyable;
-import dev.jensderuiter.skinCustomizer.customizer.ui.base.InteractableButton;
+import dev.jensderuiter.skincustomizer.CustomizerPlugin;
+import dev.jensderuiter.skincustomizer.Util;
+import dev.jensderuiter.skincustomizer.customizer.Destroyable;
+import dev.jensderuiter.skincustomizer.customizer.ui.base.InteractableButton;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
