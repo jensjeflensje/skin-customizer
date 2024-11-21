@@ -35,6 +35,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: /__w/minecraft_imagery/skin-customizer/target/skin-customizer-${{ steps.project.outputs.version }}.jar
+          asset_path: /__w/skin-customizer/skin-customizer/target/skin-customizer-${{ steps.project.outputs.version }}.jar
           asset_name: SkinCustomizer-${{ steps.project.outputs.version }}.jar
           asset_content_type: application/jar
