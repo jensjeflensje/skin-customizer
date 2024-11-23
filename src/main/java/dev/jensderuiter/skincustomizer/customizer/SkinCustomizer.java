@@ -40,6 +40,10 @@ import java.util.concurrent.CompletableFuture;
 
 public class SkinCustomizer {
 
+    @Getter
+    @Setter
+    private static SkinCustomizerOptions defaultOptions;
+
     private static final String GENERATION_ENDPOINT = "https://jens.skin/api/generate/";
     private Gson gson = new Gson();
     public static final HashMap<String, TextureData> textureCache = new HashMap<>();
@@ -67,7 +71,7 @@ public class SkinCustomizer {
 
 
     public SkinCustomizer(Location location) {
-        this(location, CustomizerPlugin.getSkinCustomizerOptions());
+        this(location, defaultOptions);
     }
 
     public SkinCustomizer(Location location, SkinCustomizerOptions config) {

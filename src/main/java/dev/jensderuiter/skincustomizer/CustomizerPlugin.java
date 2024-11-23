@@ -47,9 +47,6 @@ public final class CustomizerPlugin extends JavaPlugin {
     @Getter
     private static ConfigurationSection textureConfig;
 
-    @Getter
-    private static SkinCustomizerOptions skinCustomizerOptions;
-
     @Override
     public void onEnable() {
         instance = this;
@@ -98,7 +95,7 @@ public final class CustomizerPlugin extends JavaPlugin {
             }).toList();
             categories.add(new ComponentCategory(categoryId, yOffset, colors, componentIds));
         }
-        skinCustomizerOptions = SkinCustomizerOptions.builder().categories(categories).build();
+        SkinCustomizer.setDefaultOptions(SkinCustomizerOptions.builder().categories(categories).build());
     }
 
     @Override
